@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview Fish Image</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+        body { background:#f2f7f8; display:flex; justify-content:center; align-items:center; min-height:100vh; }
+        .container { background:#fff; padding:20px; border-radius:20px; box-shadow:0 10px 25px rgba(0,0,0,0.1); width:90%; max-width:450px; text-align:center; }
+        h1 { font-size:1.8rem; margin-bottom:15px; color:#0077b6; }
+        img { border-radius:15px; width:100%; max-height:400px; object-fit:cover; box-shadow:0 5px 15px rgba(0,0,0,0.2); margin-bottom:20px; }
+        button { background:#00b4d8; color:#fff; border:none; padding:12px 25px; border-radius:12px; font-size:1rem; cursor:pointer; margin:5px 0; transition:all 0.3s ease; width:100%; }
+        button:hover { background:#0077b6; transform:translateY(-2px); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Preview Fish Image</h1>
+        <!-- Serve image via /uploads route -->
+        <img src="{{ url_for('uploaded_file', filename=filename) }}" alt="Captured Fish">
+
+        <form method="GET" action="{{ url_for('analyze') }}">
+            <button type="submit">Analyze Fish ✅</button>
+        </form>
+
+        <form method="GET" action="{{ url_for('index') }}">
+            <button type="submit">Retake ❌</button>
+        </form>
+    </div>
+</body>
+</html>

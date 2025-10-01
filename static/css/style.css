@@ -1,0 +1,82 @@
+/* General page */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to bottom, #a1c4fd, #c2e9fb);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Main container */
+.container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    padding: 30px 40px;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Title */
+.title {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #0b3d91;
+}
+
+/* Video and camera card */
+.camera-card {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    margin-bottom: 20px;
+}
+
+video {
+    width: 100%;
+    border-radius: 15px;
+}
+
+/* Preview card */
+.preview-card {
+    border: 2px dashed #0b3d91;
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.preview-card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* Buttons */
+.buttons {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.btn {
+    background: linear-gradient(to right, #0b3d91, #1e90ff);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.analyze-btn {
+    background: linear-gradient(to right, #ff416c, #ff4b2b);
+}

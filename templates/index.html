@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐟 Fish Catch AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background: #f2f7f8; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .container { background: #fff; padding: 20px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 90%; max-width: 450px; text-align: center; }
+        h1 { font-size: 1.8rem; margin-bottom: 15px; color: #0077b6; }
+        video { border-radius: 15px; width: 100%; height: auto; box-shadow: 0 5px 15px rgba(0,0,0,0.2); margin-bottom: 15px; }
+        button { background: #00b4d8; color: #fff; border: none; padding: 12px 25px; border-radius: 12px; font-size: 1rem; cursor: pointer; margin: 5px 0; transition: all 0.3s ease; width: 100%; }
+        button:hover { background: #0077b6; transform: translateY(-2px); }
+        @media (max-width: 480px) {
+            .container { padding: 15px; }
+            h1 { font-size: 1.5rem; }
+            button { padding: 10px 20px; font-size: 0.95rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🐟 Fish Catch Identifier</h1>
+
+        <video id="video" autoplay playsinline></video>
+        <canvas id="canvas" width="400" height="300" style="display:none;"></canvas>
+
+        <form id="imageForm" action="{{ url_for('preview') }}" method="POST">
+            <input type="hidden" name="image" id="imageInput">
+            <button type="button" id="snap">Capture Image</button>
+        </form>
+    </div>
+
+<script>
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const snap = document.getElementById('snap');
+    const imageInput = document.getElementById('imageInput');
+    const form = document.getElementById('imageForm');
+
+    // Access camera (back camera if available)
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+        .then(stream => { video.srcObject = stream; })
+        .catch(err => { console.error("Camera error: ", err); });
+
+    // Capture snapshot and submit form
+    snap.addEventListener('click', () => {
+        canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+        const dataURL = canvas.toDataURL('image/png');
+        imageInput.value = dataURL;   // put base64 in hidden input
+        form.submit();                // go to /preview page
+    });
+</script>
+</body>
+</html>

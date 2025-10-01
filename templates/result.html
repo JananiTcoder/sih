@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐟 Fish Analysis Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background: #f2f7f8; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+
+        .container { 
+            background: #fff; 
+            padding: 25px; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+            width: 90%; 
+            max-width: 450px; 
+            text-align: center; 
+        }
+
+        h1 { font-size: 1.8rem; margin-bottom: 20px; color: #0077b6; }
+        .result-card { 
+            background: #e0f7fa; 
+            padding: 20px; 
+            border-radius: 15px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+            margin-bottom: 20px;
+        }
+        .result-card h2 { margin-bottom: 10px; color: #0077b6; }
+        .fish-img { 
+            border-radius: 15px; 
+            width: 100%; 
+            max-height: 300px; 
+            object-fit: cover; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2); 
+        }
+
+        .btn { 
+            display: inline-block; 
+            background: #00b4d8; 
+            color: #fff; 
+            padding: 12px 25px; 
+            border-radius: 12px; 
+            text-decoration: none; 
+            font-size: 1rem; 
+            transition: all 0.3s ease; 
+        }
+        .btn:hover { 
+            background: #0077b6; 
+            transform: translateY(-2px); 
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 15px; }
+            h1 { font-size: 1.5rem; }
+            .btn { padding: 10px 20px; font-size: 0.95rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Fish Analysis Result</h1>
+
+        <div class="result-card">
+            <h2>Species: {{ fish_name }}</h2>
+            <h2>Freshness: {{ freshness }}</h2>
+            <h2>Count: {{ count }}</h2>
+            <h2>Estimated Weight: {{ total_weight }} kg</h2>
+            <h2>Location: {{ lat }}, {{ lon }}</h2>
+            <h2>Time: {{ timestamp }}</h2>
+            <h2>Overall Quality: {{ quality }}</h2>
+            
+            <!-- Corrected image source -->
+            <img src="{{ url_for('uploaded_file', filename=img_path.split('/')[-1]) }}" alt="Fish Image" class="fish-img">
+        </div>
+
+        <a href="{{ url_for('index') }}" class="btn">🔄 Analyze Another Fish</a>
+    </div>
+</body>
+</html>
